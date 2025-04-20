@@ -1,8 +1,22 @@
-/*
-Create a function named getComputerChoice
-Get a random number between 1 and 3
-If random number equals 1, then computers'choice equals "rock"
-Else if random number equals 2, then computers'choice equals "paper"
-Else computers'choice equals "scissors"
-Returns computer's choice
-*/
+// Create a function named getComputerChoice
+function getComputerChoice() {
+  // Get a random number between 1 and 3
+  const randomNumber = Math.floor(Math.random() * 3) + 1;
+  let computerChoice;
+
+  // If random number equals 1, then computers'choice equals "rock"
+  // Else if random number equals 2, then computers'choice equals "paper"
+  // Else computers'choice equals "scissors"
+  if (randomNumber === 1) {
+    computerChoice = "rock";
+  } else if (randomNumber === 2) {
+    computerChoice = "paper";
+  } else {
+    computerChoice = "scissors";
+  }
+
+  // Returns computer's choice
+  return computerChoice;
+}
+
+console.log(getComputerChoice());
