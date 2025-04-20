@@ -31,38 +31,76 @@ function getHumanChoice() {
 
 // Create a function playRound
 // Pass it 2 parameters: "humanChoice" and "computerChoice"
-// Lowercase both parameter values
-// Compare values
+function playRound(humanChoice, computerChoice) {
+  // Lowercase both parameter values
+  let fmtHumanChoice = humanChoice.toLowerCase();
+  let fmtComputerChoice = computerChoice.toLowerCase();
+  let scoreMessage;
 
-// If humanChoice equals computerChoice
-//  Write "It's a tie, try again"
+  // Compare values
+  switch (fmtHumanChoice) {
+    // If humanChoice equals computerChoice
+    case fmtComputerChoice:
+      //  Write "It's a tie, try again"
+      scoreMessage = "It's a tie, try again";
+      break;
+    // If humanChoice equals "rock"
+    case "rock":
+      //  If computerChoice equals "scissors"
+      if (fmtComputerChoice === "scissors") {
+        //    Write "You win! Rock beats scissors"
+        scoreMessage = "You win! Rock beats scissors";
+        //    Increment humanScore
+        humanScore++;
+      } else {
+        //    Write "You lose! Paper beats rock"
+        scoreMessage = "You lose! Paper beats rock";
+        //    Increment computerScore
+        computerScore++;
+      }
+      break;
+    // Else if humanChoice equals "paper"
+    case "paper":
+      //  If fmtComputerChoice equals "rock"
+      if (fmtComputerChoice === "rock") {
+        //    Write "You win! Paper beats rock"
+        scoreMessage = "You win! Paper beats rock";
+        //    Increment humanScore
+        humanScore++;
+      } else {
+        //    Write "You lose! Scissors beats paper"
+        scoreMessage = "You lose! Scissors beats paper";
+        //    Increment computerScore
+        computerScore++;
+      }
+      break;
+    // Else if humanChoice equals "scissors"
+    case "scissors":
+      //  If fmtComputerChoice equals "paper"
+      if (fmtComputerChoice === "paper") {
+        //    Write "You win! scissors beats paper"
+        scoreMessage = "You win! scissors beats paper";
+        //    Increment humanScore
+        humanScore++;
+      } else {
+        //    Write "You lose! Rock beats scissors"
+        scoreMessage = "You lose! Rock beats scissors";
+        //    Increment computerScore
+        computerScore++;
+      }
+  }
 
-// If humanChoice equals "rock"
-//  If computerChoice equals "scissors"
-//    Write "You win! Rock beats scissors"
-//    Increment humanScore
-//  Else write "You lose! Paper beats rock"
-//    Write "You lose! Paper beats rock"
-//    Increment computerScore
+  console.log(
+    `Player chose ${fmtHumanChoice} --- Bot chose ${fmtComputerChoice}`
+  );
+  console.log(scoreMessage);
+  console.log(`Score: Player ${humanScore} --- Bot ${computerScore}`);
+}
 
-// Else if humanChoice equals "paper"
-//  If computerChoice equals "rock"
-//    Write "You win! Paper beats rock"
-//    Increment humanScore
-//  Else
-//    Write "You lose! Scissors beats paper"
-//    Increment computerScore
-
-// Else
-//  If computerChoice equals "paper"
-//    Write "You win! scissors beats paper"
-//    Increment humanScore
-//  Else
-//    Write "You lose! Rock beats scissors"
-//    Increment computerScore
-
-console.log(getComputerChoice());
-console.log(getHumanChoice());
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
 let humanScore = 0;
 let computerScore = 0;
+
+playRound(humanSelection, computerSelection);
