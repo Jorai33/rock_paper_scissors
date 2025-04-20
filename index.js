@@ -20,3 +20,8 @@ function getComputerChoice() {
 }
 
 console.log(getComputerChoice());
+
+// Create a function getHumanChoice
+// Prompt "What is your choice ?"
+// Assign prompt value to human's choice
+// Return human's choice
