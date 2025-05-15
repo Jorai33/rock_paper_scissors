@@ -63,9 +63,16 @@ function playGame() {
   }
 
   //   Play 5 rounds
-  for (let i = 0; i < 5; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   playRound(getHumanChoice(), getComputerChoice());
+  // }
+
+  const buttons = Array.from(document.querySelectorAll("button"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      playRound(button.id, getComputerChoice());
+    });
+  });
 
   //   Compare the final scores and display end game message
   if (humanScore > computerScore) {
