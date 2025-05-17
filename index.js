@@ -17,6 +17,7 @@ function getHumanChoice() {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
+  const results = document.querySelector("#results");
 
   function playRound(humanChoice, computerChoice) {
     const fmtHumanChoice = humanChoice.toLowerCase();
@@ -55,17 +56,12 @@ function playGame() {
         }
     }
 
-    console.log(
-      `Player chose ${fmtHumanChoice} --- Bot chose ${fmtComputerChoice}`
-    );
-    console.log(scoreMessage);
-    console.log(`Score: Player ${humanScore} --- Bot ${computerScore}`);
+    results.innerText = ` 
+    Player chose ${fmtHumanChoice} --- Bot chose ${fmtComputerChoice}
+    ${scoreMessage}
+    Score: Player ${humanScore} --- Bot ${computerScore}
+    `;
   }
-
-  //   Play 5 rounds
-  // for (let i = 0; i < 5; i++) {
-  //   playRound(getHumanChoice(), getComputerChoice());
-  // }
 
   const buttons = Array.from(document.querySelectorAll("button"));
   buttons.forEach((button) => {
@@ -75,12 +71,16 @@ function playGame() {
   });
 
   //   Compare the final scores and display end game message
-  if (humanScore > computerScore) {
-    return "The player won gracefully";
-  } else if (humanScore < computerScore) {
-    return "The computer won";
+  if (humanScore > 0 || computerScore > 0) {
+    if (humanScore > computerScore) {
+      return "The player won gracefully";
+    } else if (humanScore < computerScore) {
+      return "The computer won";
+    } else {
+      return "It's a tie";
+    }
   } else {
-    return "It's a tie";
+    return "The game is about to start";
   }
 }
 
