@@ -17,9 +17,12 @@ function getHumanChoice() {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
+  let gameOver = false;
   const results = document.querySelector("#results");
 
   function playRound(humanChoice, computerChoice) {
+    if (gameOver) return;
+
     const fmtHumanChoice = humanChoice.toLowerCase();
     const fmtComputerChoice = computerChoice.toLowerCase();
     let scoreMessage;
@@ -56,11 +59,25 @@ function playGame() {
         }
     }
 
-    results.innerText = ` 
-    Player chose ${fmtHumanChoice} --- Bot chose ${fmtComputerChoice}
-    ${scoreMessage}
-    Score: Player ${humanScore} --- Bot ${computerScore}
-    `;
+    if (humanScore < 5 && computerScore < 5) {
+      results.innerText = ` 
+      Player chose ${fmtHumanChoice} --- Bot chose ${fmtComputerChoice}
+      ${scoreMessage}
+      Score: Player ${humanScore} --- Bot ${computerScore}
+      `;
+    } else {
+      gameOver = true;
+
+      if (humanScore === 5) {
+        results.innerText = `
+        Final score: Player ${humanScore} --- Bot ${computerScore}
+        The player won gracefully`;
+      } else {
+        results.innerText = `
+        Final score: Player ${humanScore} --- Bot ${computerScore}
+        The computer won`;
+      }
+    }
   }
 
   const buttons = Array.from(document.querySelectorAll("button"));
@@ -69,19 +86,6 @@ function playGame() {
       playRound(button.id, getComputerChoice());
     });
   });
-
-  //   Compare the final scores and display end game message
-  if (humanScore > 0 || computerScore > 0) {
-    if (humanScore > computerScore) {
-      return "The player won gracefully";
-    } else if (humanScore < computerScore) {
-      return "The computer won";
-    } else {
-      return "It's a tie";
-    }
-  } else {
-    return "The game is about to start";
-  }
 }
 
-console.log(playGame());
+playGame();
